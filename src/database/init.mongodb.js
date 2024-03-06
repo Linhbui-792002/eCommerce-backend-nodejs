@@ -1,8 +1,12 @@
 'use strict';
+import config from '../configs/config.mongodb.js';
 import mongoose from 'mongoose';
 import { countConnect } from '../helpers/check.connect.js';
-const connectString = `mongodb://127.0.0.1:27017/DB_eCommerce_Dev`;
-
+const {
+  db: { host, name, port },
+} = config;
+const connectString = `mongodb://${host}:${port}/${name}`;
+console.log(`connectString:`, connectString,process.env.PORT);
 //dev
 class Database {
   constructor() {
