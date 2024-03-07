@@ -1,17 +1,26 @@
 'use strict';
 
+import { CREATED ,SuccessResponse} from '../core/success.response.js';
 import AccessService from '../services/access.service.js';
 
 class AccessController {
+
+  login = async (req, res, next) => {
+    new SuccessResponse({
+      metadata: await AccessService.login(req.body)
+    }).send(res);
+  }
+
   signup = async (req, res, next) => {
-    try {
-      console.log(`[P]::signUp::`, req.body);
-      const resutl = await AccessService.signUp(req.body);
-      console.log(resutl, 'resutl');
-      return res.status(201).json({ ...resutl });
-    } catch (error) {
-      next(error);
-    }
+    const resutl = await AccessService.signUp(req.body);
+
+    new CREATED({
+      message: 'Registed OK!',
+      metadata: resutl,
+      options: {
+        limit: 10,
+      },
+    }).send(res);
   };
 }
 const accessController = new AccessController();
