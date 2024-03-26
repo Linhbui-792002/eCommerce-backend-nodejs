@@ -25,7 +25,7 @@ const apiKey = async (req, res, next) => {
     }
     req.objKey = objKey;
     return next();
-  } catch (error) {}
+  } catch (error) { }
 };
 
 const permission = (permission) => {
@@ -47,10 +47,5 @@ const permission = (permission) => {
   };
 };
 
-const asyncHandler = fn => {
-    return (req, res, next) => {
-        fn(req,res, next).catch(next)
-    }
-}
 
-export { apiKey, permission, asyncHandler };
+export { apiKey, permission };

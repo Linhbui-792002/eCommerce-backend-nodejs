@@ -3,9 +3,21 @@
 ### sigup
 POST {{url_dev}}/shop/signup
 Content-Type: application/json
+x-api-key: e5047f0015f27f311c8002db1bc3ab45d19a5e6d8b7783d53a858e7d6178f4b7c8bfbbd80c102990c6b0a3dd807dc5810c1653814498e8dfbaa6d671ebbb2d47
 
 {
-    "name":"Shop linhbui",
-    "email":"buixuanlinh20@gmail.com",
-    "password":"abc123"
-},
+    "name": "Shop test1",
+    "email": "buixuanlinh7920012@gmail.com",
+    "password": "abc123"
+}
+
+###LOGIN
+
+POST {{url_dev}}/shop/login
+Content-Type: application/json
+x-api-key: e5047f0015f27f311c8002db1bc3ab45d19a5e6d8b7783d53a858e7d6178f4b7c8bfbbd80c102990c6b0a3dd807dc5810c1653814498e8dfbaa6d671ebbb2d47
+
+{
+    "email": "buixuanlinh20@gmail.com",
+    "password": "abc123"
+}   

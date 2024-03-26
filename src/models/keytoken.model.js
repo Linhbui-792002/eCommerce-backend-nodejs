@@ -38,5 +38,5 @@ const keyTokenSchema = new Schema(
 );
 
 //Export the model
-const KeyToken = mongoose.model(DOCUMENT_NAME, keyTokenSchema);
-export default KeyToken;
+const KeyTokenModel = mongoose.model(DOCUMENT_NAME, keyTokenSchema);
+export default KeyTokenModel;
