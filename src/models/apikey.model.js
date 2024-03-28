@@ -1,7 +1,5 @@
 'use strict';
 
-'use strict';
-
 import mongoose, { Schema } from 'mongoose';
 
 const DOCUMENT_NAME = 'Apikey';
