@@ -36,7 +36,6 @@ class ProductFactory {
     static async updateProduct(type, productId, payload) {
         const productClass = ProductFactory.productRegistry[type]
         if (!productClass) throw new BadRequestError(`Invalid product Types ${type}`)
-
         return new productClass(payload).updateProduct(productId)
     }
 
@@ -97,8 +96,8 @@ class Product {
     }
 
     // update product
-    async updateProduct(productId, bodyUpdate) {
-        return await updateProductById({ productId, bodyUpdate, model: product })
+    async updateProduct(productId, payload) {
+        return await updateProductById({ productId, bodyUpdate:payload, model: product })
     }
 }
 
@@ -180,6 +179,20 @@ class Furniture extends Product {
 
         return newProduct
 
+    }
+
+    async updateProduct(productId) {
+
+        // 1. remove attr has null or undefined
+        //2 check update o dau
+        const objectParams = removeUndefinedObject(this)
+        if (objectParams.product_attributes) {
+            // update child
+            await updateProductById({ productId, bodyUpdate: updateNestedObjectParser(objectParams.product_attributes), model: furniture })
+        }
+
+        const updateProduct = await super.updateProduct(productId, updateNestedObjectParser(objectParams))
+        return updateProduct
     }
 }
 
