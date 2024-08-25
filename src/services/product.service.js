@@ -35,7 +35,7 @@ class ProductFactory {
         type: Number,
         require: true
     },
-    product_quanlity: {
+    product_quantity: {
         type: Number,
         require: true
     },
@@ -57,13 +57,13 @@ class ProductFactory {
 //define  base product class
 class Product {
     constructor({
-        product_name, product_thumb, product_price, product_quanlity,
+        product_name, product_thumb, product_price, product_quantity,
         product_type, product_shop, product_attributes, product_description
     }) {
         this.product_name = product_name
         this.product_thumb = product_thumb
         this.product_price = product_price
-        this.product_quanlity = product_quanlity
+        this.product_quantity = product_quantity
         this.product_type = product_type
         this.product_shop = product_shop
         this.product_attributes = product_attributes

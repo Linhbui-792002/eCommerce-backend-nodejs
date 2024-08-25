@@ -13,6 +13,7 @@ import {
     updateProductById
 } from '../repositories/product.repo.js';
 import { removeUndefinedObject, updateNestedObjectParser } from '../utils/index.js';
+import { insertInventory } from '../repositories/inventory.repo.js';
 // define factory class to create product
 class ProductFactory {
     /**
@@ -92,7 +93,18 @@ class Product {
 
     //create new product
     async createProduct(product_id) {
-        return await product.create({ ...this, _id: product_id })
+        const newProduct = await product.create({ ...this, _id: product_id })
+        if(newProduct){
+            // add product_stock
+
+            await insertInventory({
+                productId: newProduct._id,
+                stock: this.product_quantity,
+                shopId: this.product_shop
+            })
+        }
+
+        return newProduct
     }
 
     // update product
