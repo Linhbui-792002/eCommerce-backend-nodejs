@@ -1,6 +1,11 @@
 'use strict';
 
 import _ from 'lodash';
+import {Types} from 'mongoose';
+
+const convertToObjectIdMongo = (id)=>{
+ return new Types.ObjectId(id)
+}
 
 const getInfoData = ({ fileds = [], object = {} }) => {
   return _.pick(object, fileds);
@@ -42,4 +47,4 @@ const updateNestedObjectParser = (obj) => {
   return final
 }
 
-export { getInfoData, getSelectData, unGetSelectData, removeUndefinedObject, updateNestedObjectParser };
+export {convertToObjectIdMongo, getInfoData, getSelectData, unGetSelectData, removeUndefinedObject, updateNestedObjectParser };
